@@ -4,3 +4,5 @@ installed_contracts/**
 .prettierrc
 npm-debug.log
 .todo
+yarn.lock
+package-lock.json
