@@ -1,0 +1,51 @@
+{
+  "name": "suc",
+  "version": "1.0.0",
+  "description": "salva un caballo",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "dev": "webpack-dev-server",
+    "test": "truffle test",
+    "build": "webpack",
+    "ipfs": "ipfs add ./build/ -r",
+    "migrate": "truffle migrate --reset",
+    "migrate-rinkeby": "truffle migrate --reset -f 2 --network rinkeby",
+    "migrate-ropsten": "truffle migrate --reset -f 2 --network ropsten",
+    "publish-rinkeby": "truffle publish --network rinkeby",
+    "publish-ropsten": "truffle publish --network ropsten",
+    "deploy-rinkeby": "npm run build && npm run migrate-rinkeby",
+    "deploy-ropsten": "npm run build && npm run migrate-ropsten"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dappsar/suc.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dappsar/suc/issues"
+  },
+  "homepage": "https://github.com/dappsar/suc#readme",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "truffle": "^4.0.1",
+    "truffle-contract": "^1.1.11",
+    "truffle-hdwallet-provider": "0.0.6"
+  },
+  "dependencies": {
+    "openzeppelin-solidity": "^2.0.0"
+  }
+}
