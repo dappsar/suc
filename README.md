@@ -11,7 +11,7 @@ El contrato hace uso de la librería **[open-zeppelin](https://github.com/OpenZe
 A continuación se describe:
 
 - [Preparación del ambiente](https://github.com/dappsar/suc#preparaci%C3%B3n-del-ambiente)
-- [Cómo ejecutar el proyecto](https://github.com/dappsar/suc/pec3#ejecuci%C3%B3n-del-proyecto)
+- [Cómo ejecutar el proyecto](https://github.com/dappsar/suc#ejecuci%C3%B3n-del-proyecto)
 
 ## Preparación del ambiente
 
