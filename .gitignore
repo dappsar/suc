@@ -1,8 +1,8 @@
-node_modules/**
-installed_contracts/**
-.eslint*
-.prettierrc
-npm-debug.log
+.DS_Store
+.vscode
+node_modules
+dist
+build
 .todo
 yarn.lock
 package-lock.json
