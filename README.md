@@ -257,7 +257,7 @@ En etherscan, se puede ver ingresando la siguiente dirección:
 URL: https://rinkeby.etherscan.io/address/<contract_address>.
 ```
 
-[Aca](https://rinkeby.etherscan.io/address/) hay un ejemplo del contrato desplegado en Rinkeby
+[Aca](https://rinkeby.etherscan.io/address/0xC38eA247088ee22aeFCcf58671938e2E27875850) hay un ejemplo del contrato desplegado en Rinkeby.
 
 Luego, teniendo algunas variables configuradas en el entorno o archivo .env, se puede ejecutar el script [scripts/mint.js](scripts/mint.js) para interactuar con el contrato desplegado.
 
@@ -270,6 +270,17 @@ FACTORY_CONTRACT_ADDRESS=""
 NFT_CONTRACT_ADDRESS="<Direccion del contrato, obtenido luego de truffle migrate>"
 NETWORK="rinkeby"
 ```
+
+```
+# Para ejecutar el minting:
+node scripts/mint.js
+```
+
+Ejemplo de salida del script mint.js:
+
+
+![Salida mint.js](images/mint.png)
+
 
 ---
 

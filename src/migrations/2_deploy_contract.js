@@ -11,6 +11,7 @@ module.exports = function (deployer) {
     //return deployer.deploy(sucToken)
     // In order for both truffle and the truffle-solidity-loader to migrate successfully, 
     // the solution is to provide the gas in the migration scripts. That can be done per contract:
-    deployer.deploy(sucToken, "sucToken1", "suc");
-  //});
+    deployer.deploy(sucToken, "sucToken1", "suc").then(function(){
+      return console.log(sucToken.address);
+    });
 };

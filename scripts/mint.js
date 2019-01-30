@@ -60,7 +60,7 @@ async function main() {
         const result = await nftContract.methods.mintTo(OWNER_ADDRESS).send({
           from: OWNER_ADDRESS
         });
-        console.log("Minted creature. Transaction: " + result.transactionHash)
+        console.log("Minted solToken. Transaction: " + result.transactionHash)
     
       } else if (FACTORY_CONTRACT_ADDRESS) {
         console.log("factory contract address: " + FACTORY_CONTRACT_ADDRESS)
@@ -71,8 +71,10 @@ async function main() {
         const result = await factoryContract.methods.mint(DEFAULT_OPTION_ID, OWNER_ADDRESS).send({
           from: OWNER_ADDRESS
         });
-        console.log("Minted creature. Transaction: " + result.transactionHash)
+        console.log("Minted solToken. Transaction: " + result.transactionHash)
       }
+      return;
+      
   } catch (ex) {
       console.error(ex)
       return
