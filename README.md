@@ -1,6 +1,6 @@
 ![Build Status](https://travis-ci.org/dappsar/suc.svg?branch=master)&nbsp;
 
-# Token Salva un Caballo
+# Salva un Caballo
 
 ## Introducción
 
@@ -33,9 +33,9 @@ Todos los contratos y tests, se encuentra en la carpeta [src](https://github.com
 ### Carpetas y archivos
 
 ```bash
-├───build               --> 
-├───doc                 --> 
-├───images              --> 
+├───build               --> Carpeta con los contratos en Json
+├───doc                 --> Documentación del proyecto
+├───images              --> Algunas imagenes del readme
 └───src
     ├───contracts       
     │   ├───math        --> Support Math Utils Library
@@ -46,23 +46,25 @@ Todos los contratos y tests, se encuentra en la carpeta [src](https://github.com
     └───tests           
         ├───principal   --> Contract Tests
         └───tokens      --> Javascript Tests
-├───.babelrc            --> 
-├───.editorconfig       --> 
-├───.eslintrc.js        --> 
-├───.gitattributes      --> 
-├───.npmignore          --> npm ignore files
-├───.solhint.json       --> 
-├───.travis.yml         --> circle-ci Script
-├───LICENSE             --> License
-├───package.json        --> To download dependencies
-├───README.md           --> This File
-├───truffle-config.js   --> 
-├───tsconfig.json       --> 
-└── .gitignore          --> 
+├───.babelrc            --> Configuración de [Babel](https://babeljs.io/docs/en/)
+├───.editorconfig       --> Configuración para el editor
+├───.eslintrc.js        --> Configuración de [esLint](https://eslint.org/docs/user-guide/configuring), para "linting" de archivos de javascript
+├───.gitattributes      --> Configuración para Git
+├───.npmignore          --> Archivos a ser ignorados por NPM
+├───.solhint.json       --> Configuración de [solHint](https://protofire.github.io/solhint/), para "linting" código en Solidity
+├───.travis.yml         --> Script de circle-ci para Integración contínua
+├───LICENSE             --> Licencia de los fuentes
+├───package.json        --> El archivo de npm para las dependencias y scripts
+├───README.md           --> Este archivo!
+├───truffle-config.js   --> Configuración de Truffle
+├───tsconfig.json       --> Configuración de TypeScript (los tests)
+└── .gitignore          --> Archivos / carpetas a ser ignoradas por git
 ```
 
 
 ### Diagrama de clases de los contratos e interfaces
+
+Powered by [mermaid](https://github.com/knsv/mermaid)
 
 ```mermaid
 classDiagram
@@ -95,6 +97,7 @@ SafeMath :  <<'library'>>
 
 ```
 
+![Mermaid diagram rendered](images/class-diagram.png)
 
 
 ---
