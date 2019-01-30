@@ -1,34 +1,41 @@
 ![Build Status](https://travis-ci.org/dappsar/suc.svg?branch=master)&nbsp;
 
-# Salva un Caballo
+# Tokenización de activos de ONG "Salva un Caballo"
 
 ## Introducción
 
-Esta es una implementación de un Token no fungible (NFT), para la ONG "Salva un Caballo". Cumple el estándard [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md). 
+Se mantiene en éste repositorio, la implementación de los activos de la ONG "Salva un Caballo", haciendo uso del estándar [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md), para representar los activos mediante un token no fungible ([TNF](https://en.wikipedia.org/wiki/Non-fungible_token)).
 
+Este repositorio, es parte del trabajo de fin de máster (TFM), correspondiente al Máster de blockchain, cripto-economía y Ethereum, de la [Universidad de Alcal](https://www.uah.es/es/).
 
+## Contenido
 
+En éste documento se describe:
 
-A continuación se describe:
-
-- [Estructura del proyecto](https://github.com/dappsar/suc#estructura-del-proyecto)
+- [Estructura del proyecto](https://github.com/dappsar/suc/tree/feature/start#estructura-del-proyecto)
     
-    * Carpetas y archivos
-    * Diagrama de clases de los contratos e interfaces
+    * [Carpetas y archivos](https://github.com/dappsar/suc/tree/feature/start#carpetas-y-archivos)
+    * [Diagrama de clases de los contratos e interfaces](https://github.com/dappsar/suc/tree/feature/start#carpetas-y-archivos)
 
-- [Preparación del ambiente](https://github.com/dappsar/suc#preparaci%C3%B3n-del-ambiente)
+- [Preparación del ambiente](https://github.com/dappsar/suc/tree/feature/start#preparaci%C3%B3n-del-ambiente)
 
-    * Requisitos
-    * Instalación
+    * [Requisitos](https://github.com/dappsar/suc/tree/feature/start#requisitos)
+    * [Instalación](https://github.com/dappsar/suc/tree/feature/start#instalación)
 
-- [Iniciar el proyecto](https://github.com/dappsar/suc#iniciar-el-proyecto)
+- [Flujo de los fuentes](https://github.com/dappsar/suc/tree/feature/start#floju-de-los-fuentes)
 
+    * Compilación
+    * Testing
+    * Despliegue
+    * Distribución
+
+- [Créditos](https://github.com/dappsar/suc/tree/feature/start#créditos)
 
 ---
 
 ## Estructura del proyecto
 
-Todos los contratos y tests, se encuentra en la carpeta [src](https://github.com/dappsar/suc/blob/master/src).
+A continuación se describen las carpetas y archivos (del raíz) que forman parte del proyecto. Todos los archivos correspondientes a los contratos y sus tests, se encuentra en la carpeta [src](https://github.com/dappsar/suc/blob/master/src).
 
 ### Carpetas y archivos
 
@@ -104,20 +111,24 @@ SafeMath :  <<'library'>>
 
 ## Preparación del ambiente
 
+Para la ejecución del proyecto, es necesario cumplir con algunos requisitos, que se descrien a continuación. Luego, se detalla cómo relaizar el despliegue del proyecto en ambiente local. 
+
 ### Requisitos
 
-En el ambiente es requerido, tener instalado:
+En el ambiente local es requerido tener instalado:
 
 - [Git](https://nodejs.org/en/)
 - [nodeJs](https://nodejs.org/en/)
 - [Ganache](https://truffleframework.com/ganache)
 - [Truffle](https://truffleframework.com/)
 - [Metamask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=es)
-- npm install -g ethereumjs-testrpc
+- [ethereumjs-testrpc](https://www.npmjs.com/package/ethereumjs-testrpc)
 
-### Instalación
+---
 
-#### PASO 1: Clonación
+## Instalación
+
+### PASO 1: Clonación
 
 Descargar el proyecto con git
 
@@ -125,7 +136,7 @@ Descargar el proyecto con git
 git clone https://github.com/dappsar/suc.git
 ```
 
-#### PASO 2: Instalar dependencias
+### PASO 2: Instalar dependencias
 
 Instalar las dependencias del proyecto con:
 
@@ -135,25 +146,34 @@ npm install
 
 Eso generará la carpeta _node_modules_ con todas las dependencias requeridas.
 
+### PASO 3: Iniciar Ganache
+
+Iniciar el cliente ganache que se haya descargado. Por lo general, esto se logra, haciendo doble click en el acceso directo que haya generado la instalación.
+
 ---
 
-## Iniciar el proyecto
+## Flujo de los fuentes
 
-### PASO 1: Iniciar Ganache
 
-Iniciar el cliente ganache que se haya descargado.
+### Compilación
 
-### PASO 2: Compilar, testear, publicar y desplegar el contrato inteligente
-
-#### Compilación del contrato
-
-Para realizar la compilación del contrato, se tiene que ejecutar el siguiente comando:
+Para realizar la compilación de los contrato, se tiene que ejecutar el siguiente comando:
 
 ```
-truffle compile
+npm run compile
 ```
 
-#### Migración del contrato a una blockchain
+## Testing 
+
+Se pueden correr los tests realizados para el contrato, con el comando:
+
+```
+npm run test
+```
+
+
+### Migración a una blockchain <CORREGIR / REVISAR>
+
 
 Teniendo los contratos compilados e iniciado _Ganache_, se pueden migrar a la blockchain con el siguiente comando:
 
@@ -171,15 +191,9 @@ truffle migrate --reset --network rinkeby
 truffle migrate --reset --network ropsten
 ```
 
-#### Testing del contrato
 
-Se pueden correr los tests realizados para el contrato, con el comando:
+### Distribución del proyecto <CORREGIR / REVISAR>
 
-```
-npm run test
-```
-
-#### Distribución del proyecto
 
 Se puede generar una carpeta con todos los archivos requeridos del proyecto, en caso de que se quiera distribuir (por ejemplo, para desplegar en un webServer. En mi máquina local, he usado tomcat, para lo cual hay un script deploy-tomcat.sh). Para ello, basta con ejecutar:
 
