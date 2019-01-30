@@ -6,9 +6,10 @@ require('babel-polyfill')
 const HDWalletProvider = require("truffle-hdwallet-provider");
 const MNEMONIC = process.env.MNEMONIC;
 const INFURA_KEY = process.env.INFURA_KEY;
+const FROM_ADDRESS = process.env.OWNER_ADDRESS;
 
-if (!MNEMONIC || !INFURA_KEY) {
-  console.error("Please set a mnemonic and infura key in an environment file (.env)");
+if (!MNEMONIC || !INFURA_KEY || !FROM_ADDRESS) {
+  console.error("Please set a mnemonic, infura key and from address in an environment file (.env)");
   return;
 }
 
@@ -18,7 +19,11 @@ module.exports = {
   migrations_directory: "./src/migrations",
   compilers: {
     solc: {
-      version: "0.5.2"
+      version: "0.5.2",
+      optimizer: {
+          enabled: true,
+          runs: 200
+      }
     }
   },
   mocha: {
@@ -38,13 +43,15 @@ module.exports = {
     },
     ropsten: {
       provider: new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/v3/" + INFURA_KEY),
+      from: FROM_ADDRESS,
       network_id: 3, // official id of the ropsten network,
       gas: 4200000
     },
     rinkeby: {
       provider: new HDWalletProvider(MNEMONIC, "https://rinkeby.infura.io/v3/" + INFURA_KEY),
+      from: FROM_ADDRESS,
       network_id: 4, // official id of the rinkeby network,
-      gas: 1803609
+      gas: 7000000
     }
   }
 };

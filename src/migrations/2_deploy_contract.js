@@ -9,7 +9,8 @@ module.exports = function (deployer) {
   //deployer.deploy(Destructible).then(function () {
     //deployer.link(Destructible, sucToken)
     //return deployer.deploy(sucToken)
-    console.log("!");
+    // In order for both truffle and the truffle-solidity-loader to migrate successfully, 
+    // the solution is to provide the gas in the migration scripts. That can be done per contract:
     deployer.deploy(sucToken, "sucToken1", "suc");
   //});
 };

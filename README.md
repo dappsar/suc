@@ -31,6 +31,7 @@ En éste documento se describe:
     * Testing
     * Despliegue
     * Distribución
+    * Minting
 
 - [Créditos](https://github.com/dappsar/suc/tree/feature/start#créditos)
 
@@ -182,15 +183,17 @@ __Definición en archivo .env:__
 (se puede ver un archivo de ejemplo [aquí](.env.sample))
 
 ```
-* INFURA_KEY="": Key provista por el sitio de infura, para el proyecto que tengamos creado
+- INFURA_KEY="": Key provista por el sitio de infura, para el proyecto que tengamos creado
 - MNEMONIC="": las 12 palabras que ayudan a crear la clave privada de la cuenta que tengamos en Metamask
+- OWNER_ADDRESS="": Dirección de Metamask que se usará para desplegar los contratos
 ```
 
 __Definición mediante EXPORT:__
 
 ```
 export INFURA_KEY="<your_infura_key>"
-export MNEMONIC="<metamask>"
+export MNEMONIC="<metamask 12 mnemonic words>"
+export OWNER_ADDRESS="<metamask address>"
 ```
 
 
@@ -240,8 +243,33 @@ truffle migrate --reset --network ropsten
 ```
 
 En el archivo de configuración de truffle (truffle-config.js), está configurado la migración para infura.io. 
-Para que funcione, es necesario configurar dos variables de entorno: MNEMONIC e INFURA_KEY, con los datos del proyecto que cada uno tenga en Infura. Eso se puede configurar en un archivo .env (Linux) o setear esas variables con un EXPORT (Windows / linux).
+Para que funcione, es necesario configurar tres variables de entorno: MNEMONIC,  INFURA_KEY y OWNER_ADDRESS, con los datos del proyecto que cada uno tenga en Infura y metamask. Eso se puede configurar en un archivo .env (Linux) o setear esas variables con un EXPORT (Windows / linux).
 
+### Minting
+
+Después de desplegarse el contrato en la blockchain, se podrá ver en Etherscan. La dirección del contrato, se piede tomar de la salida de la consola de truffle, luego de ejecutar la migración. En la siguiente imagen se puede ver un ejemplo de la salida de éste paso:
+
+![Salida Truffle migrate](images/truffle-migrate.png)
+
+En etherscan, se puede ver ingresando la siguiente dirección:
+
+```
+URL: https://rinkeby.etherscan.io/address/<contract_address>.
+```
+
+[Aca](https://rinkeby.etherscan.io/address/) hay un ejemplo del contrato desplegado en Rinkeby
+
+Luego, teniendo algunas variables configuradas en el entorno o archivo .env, se puede ejecutar el script [scripts/mint.js](scripts/mint.js) para interactuar con el contrato desplegado.
+
+```
+# Variables a configurar 
+NFURA_KEY="": Key provista por el sitio de infura, para el proyecto que tengamos creado
+MNEMONIC="": las 12 palabras que ayudan a crear la clave privada de la cuenta que tengamos en Metamask
+OWNER_ADDRESS="": Dirección de Metamask que se usará para desplegar los contratos
+FACTORY_CONTRACT_ADDRESS=""
+NFT_CONTRACT_ADDRESS="<Direccion del contrato, obtenido luego de truffle migrate>"
+NETWORK="rinkeby"
+```
 
 ---
 
@@ -251,7 +279,4 @@ Para que funcione, es necesario configurar dos variables de entorno: MNEMONIC e 
 * La implementación del proyecto, se basa en el código fuente de [0xCert](https://github.com/0xcert/ethereum-erc721), quienes tienen una implementación estándard para tokens no fungibles (NTF) cumpliendo el estándar [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md). 
 
 - Para la realización del diagrama de clases en markdown, usamos [Mermaid](https://github.com/knsv/mermaid), y la ayuda de estee [post](http://mdp.tylingsoft.com/#class-diagram).
-
-
-
 
