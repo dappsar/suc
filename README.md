@@ -177,8 +177,22 @@ Iniciar el cliente ganache que se haya descargado. Por lo general, esto se logra
 
 El proyecto usa [Infura](https://infura.io/) para el despliegue en las redes de Ethereum y, así, evitar tener configurado un nodo local. Para ello, se requiere configurar las siguienes variables en un archivo de entorno (.env) o definirlas como variables del sistema operativo (con EXPORT o SET):
 
+__Definición en archivo .env:__
+
+(se puede ver un archivo de ejemplo [aquí](.env.sample))
+
+```
 * INFURA_KEY="": Key provista por el sitio de infura, para el proyecto que tengamos creado
 - MNEMONIC="": las 12 palabras que ayudan a crear la clave privada de la cuenta que tengamos en Metamask
+```
+
+__Definición mediante EXPORT:__
+
+```
+export INFURA_KEY="<your_infura_key>"
+export MNEMONIC="<metamask>"
+```
+
 
 Estas variables no son necesarias para el despliegue en localhost, pero como se controla su definición para todas las redes, hay que ponerles algún valor por defecto, que para localhost, puede ser cualquier valor distinto de vacío.
 
