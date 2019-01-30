@@ -10,8 +10,8 @@ const MNEMONIC = process.env.MNEMONIC
 const INFURA_KEY = process.env.INFURA_KEY
 
 if (!MNEMONIC || !INFURA_KEY) {
-  console.error("Please set a mnemonic and infura key in an environment file (.env)")
-  return
+  console.error("Please set a mnemonic and infura key in an environment file (.env)");
+  return; // eslint-disable-line no-use-before-define
 }
 
 module.exports = {
