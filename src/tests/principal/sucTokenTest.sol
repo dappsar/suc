@@ -2,7 +2,7 @@ pragma solidity 0.5.2;
 
 import "../../contracts/principal/sucToken.sol";
 
-contract SucTokenTest is sucToken
+contract SucTokenTest is SucToken
 {
 
   constructor(
@@ -10,7 +10,7 @@ contract SucTokenTest is sucToken
     string memory _symbol
   )
     public
-    sucToken(_name, _symbol)
+    SucToken(_name, _symbol)
   {
   }
 
