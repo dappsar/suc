@@ -1,4 +1,5 @@
 ![Build Status](https://travis-ci.org/dappsar/suc.svg?branch=master)&nbsp;
+[![Coverage Status](https://coveralls.io/repos/github/dappsar/suc/badge.svg?branch=master)](https://coveralls.io/github/dappsar/suc?branch=master)
 
 # Tokenización de activos de ONG "Salva un Caballo"
 
