@@ -253,9 +253,8 @@ Después de desplegarse el contrato en la blockchain, se podrá ver en Etherscan
 
 En etherscan, se puede ver ingresando la siguiente dirección:
 
-```
 URL: https://rinkeby.etherscan.io/address/<contract_address>.
-```
+
 
 [Aca](https://rinkeby.etherscan.io/address/0xC38eA247088ee22aeFCcf58671938e2E27875850) hay un ejemplo del contrato desplegado en Rinkeby.
 
