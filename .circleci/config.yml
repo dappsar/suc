@@ -5,7 +5,7 @@ jobs:
     docker: # run the steps with Docker
       - image: circleci/node:11 # ...with this image as the primary container; this is where all `steps` will run
       # The secondary container is an instance of the second listed image which is run in a common network where ports exposed on the primary container are available on localhost.
-      - image: trufflesuite/ganache-cli
+      # - image: trufflesuite/ganache-cli
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
