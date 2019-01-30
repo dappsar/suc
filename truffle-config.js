@@ -1,17 +1,15 @@
 require('babel-register')
 require('babel-polyfill')
 
-
 // I'll use Infura for publishing packages along with the truffle-hdwallet-provider NPM module
 // and a 12-word hd-wallet mnemonic that represents our Ethereum address on the Ropsten network.
 const HDWalletProvider = require("truffle-hdwallet-provider");
-
-const MNEMONIC = process.env.MNEMONIC
-const INFURA_KEY = process.env.INFURA_KEY
+const MNEMONIC = process.env.MNEMONIC;
+const INFURA_KEY = process.env.INFURA_KEY;
 
 if (!MNEMONIC || !INFURA_KEY) {
   console.error("Please set a mnemonic and infura key in an environment file (.env)");
-  return; // eslint-disable-line no-use-before-define
+  return;
 }
 
 module.exports = {

@@ -9,7 +9,7 @@
     "test": "specron compile && specron test",
     "truffle-test": "truffle test ./src/tests/truffle/",
     "solhint": "solhint src/**/*.sol",
-    "lint": "eslint ./",
+    "lint": "eslint ./ --fix",
     "dev": "webpack-dev-server",
     "build": "webpack",
     "ipfs": "ipfs add ./build/ -r",
