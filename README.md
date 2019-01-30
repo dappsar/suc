@@ -172,6 +172,16 @@ Eso generará la carpeta _node_modules_ con todas las dependencias requeridas.
 
 Iniciar el cliente ganache que se haya descargado. Por lo general, esto se logra, haciendo doble click en el acceso directo que haya generado la instalación.
 
+
+### PASO 4: Configurar variables de entorno
+
+El proyecto usa [Infura](https://infura.io/) para el despliegue en las redes de Ethereum y, así, evitar tener configurado un nodo local. Para ello, se requiere configurar las siguienes variables en un archivo de entorno (.env) o definirlas como variables del sistema operativo (con EXPORT o SET):
+
+* INFURA_KEY="": Key provista por el sitio de infura, para el proyecto que tengamos creado
+- MNEMONIC="": las 12 palabras que ayudan a crear la clave privada de la cuenta que tengamos en Metamask
+
+Estas variables no son necesarias para el despliegue en localhost, pero como se controla su definición para todas las redes, hay que ponerles algún valor por defecto, que para localhost, puede ser cualquier valor distinto de vacío.
+
 ---
 
 ## Flujo de los fuentes

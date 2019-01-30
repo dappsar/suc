@@ -9,6 +9,7 @@ module.exports = function (deployer) {
   //deployer.deploy(Destructible).then(function () {
     //deployer.link(Destructible, sucToken)
     //return deployer.deploy(sucToken)
+    console.log("!");
     deployer.deploy(sucToken, "sucToken1", "suc");
   //});
 };
