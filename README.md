@@ -182,11 +182,14 @@ npm run compile
 
 ## Testing 
 
+Se está utilizando para probar los smart contracts, el [framework Specron](https://github.com/fulldecent/framework-1).
 Se pueden correr los tests realizados para el contrato, con el comando:
 
 ```
 npm run test
 ```
+
+Ese comando, llama al framework specron y ejecuta los tests de la carpeta [src/tests](src/tests).
 
 
 ### Migración a una blockchain <CORREGIR / REVISAR>
