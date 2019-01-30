@@ -194,8 +194,7 @@ npm run test
 Ese comando, llama al framework specron y ejecuta los tests de la carpeta [src/tests](src/tests).
 
 
-### Migración a una blockchain <CORREGIR / REVISAR>
-
+### Migración a una blockchain
 
 Teniendo los contratos compilados e iniciado _Ganache_, se pueden migrar a la blockchain con el siguiente comando:
 
@@ -213,15 +212,9 @@ truffle migrate --reset --network rinkeby
 truffle migrate --reset --network ropsten
 ```
 
+En el archivo de configuración de truffle (truffle-config.js), está configurado la migración para infura.io. 
+Para que funcione, es necesario configurar dos variables de entorno: MNEMONIC e INFURA_KEY, con los datos del proyecto que cada uno tenga en Infura. Eso se puede configurar en un archivo .env (Linux) o setear esas variables con un EXPORT (Windows / linux).
 
-### Distribución del proyecto <CORREGIR / REVISAR>
-
-
-Se puede generar una carpeta con todos los archivos requeridos del proyecto, en caso de que se quiera distribuir (por ejemplo, para desplegar en un webServer. En mi máquina local, he usado tomcat, para lo cual hay un script deploy-tomcat.sh). Para ello, basta con ejecutar:
-
-```
-npm run build
-```
 
 ---
 
