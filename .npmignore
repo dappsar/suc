@@ -1,4 +1,3 @@
-docs
-test
-*.md
-factorySample
+.DS_Store
+.vscode
+node_modules
