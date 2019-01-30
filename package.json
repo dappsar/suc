@@ -7,6 +7,7 @@
     "sandbox": "specron sandbox",
     "prepare": "specron compile",
     "test": "specron compile && specron test",
+    "truffle-test": "truffle test ./src/tests/truffle/",
     "solhint": "solhint src/**/*.sol",
     "lint": "eslint ./",
     "dev": "webpack-dev-server",
@@ -74,15 +75,16 @@
   "devDependencies": {
     "@specron/cli": "^0.5.1",
     "@specron/spec": "^0.5.1",
+    "babel-polyfill": "^6.26.0",
+    "eth-gas-reporter": "^0.1.12",
     "solc": "^0.5.2",
     "solhint": "^1.4.1",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.2",
-    "web3": "^1.0.0-beta.37",
     "truffle": "^4.0.1",
     "truffle-contract": "^1.1.11",
     "truffle-hdwallet-provider": "0.0.6",
-    "babel-polyfill": "^6.26.0"
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2",
+    "web3": "^1.0.0-beta.37"
   },
   "dependencies": {
     "openzeppelin-solidity": "^2.0.0"
