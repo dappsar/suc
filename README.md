@@ -107,6 +107,14 @@ SafeMath :  <<'library'>>
 ![Mermaid diagram rendered](images/class-diagram.png)
 
 
+### Contratos e Interfaces
+
+* [principal/SucToken.sol](src/contracts/principal/sucToken.sol): Es el contrato principal, que tiene la implementación de los activos de la ONG.
+- [tokens/nfTokenMetadata](src/contracts/tokens/nfTokenMetadata.sol): 
+* [tokens/nfTokenEnumerable](src/contracts/tokens/nfTokenEnumerable.sol): 
+- ----
+* ----
+
 ---
 
 ## Preparación del ambiente
