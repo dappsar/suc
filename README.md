@@ -57,7 +57,10 @@ A continuación se describen las carpetas y archivos (del raíz) que forman part
         ├───principal   --> Contract Tests
         └───tokens      --> Javascript Tests
 ├───.babelrc            --> Configuración de [Babel](https://babeljs.io/docs/en/)
+├───.coveralls.yml      --> Configuración de [Coveralls.io](https://coveralls.io/)
 ├───.editorconfig       --> Configuración para el editor
+├───.env.sample         --> Ejemplo de archivo de configuración de entorno con las variables para truffle
+├───.eslintignore       --> Archivos / carpetas a ser ignoradas por [esLint](https://eslint.org/docs/user-guide/configuring)
 ├───.eslintrc.js        --> Configuración de [esLint](https://eslint.org/docs/user-guide/configuring), para "linting" de archivos de javascript
 ├───.gitattributes      --> Configuración para Git
 ├───.npmignore          --> Archivos a ser ignorados por NPM
