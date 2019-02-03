@@ -1,4 +1,4 @@
-const sucToken = artifacts.require("../contracts/principal/sucToken.sol");
+const sucToken = artifacts.require("./sucToken.sol");
 
 
 //import "./nfTokenMetadata.sol";
