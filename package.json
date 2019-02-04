@@ -21,6 +21,9 @@
     "deploy-rinkeby": "npm run build && npm run migrate-rinkeby",
     "deploy-ropsten": "npm run build && npm run migrate-ropsten"
   },
+   "directories": {
+    "test": "./src/tests"
+  },
   "specron": {
     "compiler": {
       "build": "./build",
