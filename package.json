@@ -6,6 +6,7 @@
     "compile": "specron compile",
     "sandbox": "specron sandbox",
     "prepare": "specron compile",
+    "coverage": "./node_modules/.bin/solidity-coverage buildDirPath",
     "test": "specron compile && specron test",
     "truffle-test": "truffle test ./src/tests/truffle/",
     "solhint": "solhint src/**/*.sol",
@@ -21,7 +22,7 @@
     "deploy-rinkeby": "npm run build && npm run migrate-rinkeby",
     "deploy-ropsten": "npm run build && npm run migrate-ropsten"
   },
-   "directories": {
+  "directories": {
     "test": "./src/tests"
   },
   "specron": {
@@ -79,14 +80,16 @@
     "@specron/cli": "^0.5.1",
     "@specron/spec": "^0.5.1",
     "babel-polyfill": "^6.26.0",
+    "coveralls": "^3.0.2",
     "eth-gas-reporter": "^0.1.12",
+    "solidity-coverage": "^0.5.5",
+    "openzeppelin-solidity": "^2.0.0",
     "solc": "^0.5.2",
     "solhint": "^1.4.1",
     "truffle": "^4.1.14",
     "truffle-contract": "^1.1.11",
     "truffle-flattener": "^1.2.9",
     "truffle-hdwallet-provider": "^0.0.7-beta.0",
-    "openzeppelin-solidity": "^2.0.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2",
     "web3": "^1.0.0-beta.37",
