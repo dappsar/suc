@@ -218,7 +218,13 @@ Se está utilizando para probar los smart contracts, el [framework Specron](http
 Se pueden correr los tests realizados para el contrato, con el comando:
 
 ```
+# Tests con specron
 npm run test
+
+# Tests con truffle
+# Hay que especificar la carpeta de tests, dado que no lo es la default de truffle
+truffle test ./src/tests/truffle/
+
 ```
 
 Ese comando, llama al framework specron y ejecuta los tests de la carpeta [src/tests](src/tests).
