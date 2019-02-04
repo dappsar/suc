@@ -1,5 +1,7 @@
-![Build Status](https://travis-ci.org/dappsar/suc.svg?branch=master)&nbsp;
-[![Coverage Status](https://coveralls.io/repos/github/dappsar/suc/badge.svg?branch=master)](https://coveralls.io/github/dappsar/suc?branch=master)
+[![Travis Build Status](https://travis-ci.org/dappsar/suc.svg?branch=feature%2Fstart)](https://travis-ci.org/dappsar/suc) &nbsp;
+[![CircleCI Build Status](https://circleci.com/gh/dappsar/suc/tree/feature%2Fstart.svg?style=svg)](https://circleci.com/gh/dappsar/suc/tree/feature%2Fstart) &nbsp;
+[![Coverage Status](https://coveralls.io/repos/github/dappsar/suc/badge.svg?branch=feature%2Fstart)](https://coveralls.io/repos/github/dappsar/suc?branch=feature%2Fstart)
+
 
 # Tokenización de activos de ONG "Salva un Caballo"
 
@@ -29,6 +31,7 @@ En éste documento se describe:
     * Testing
     * Despliegue
     * Distribución
+    * Minting
 
 - [Créditos](https://github.com/dappsar/suc/tree/feature/start#créditos)
 
@@ -55,7 +58,10 @@ A continuación se describen las carpetas y archivos (del raíz) que forman part
         ├───principal   --> Contract Tests
         └───tokens      --> Javascript Tests
 ├───.babelrc            --> Configuración de [Babel](https://babeljs.io/docs/en/)
+├───.coveralls.yml      --> Configuración de [Coveralls.io](https://coveralls.io/)
 ├───.editorconfig       --> Configuración para el editor
+├───.env.sample         --> Ejemplo de archivo de configuración de entorno con las variables para truffle
+├───.eslintignore       --> Archivos / carpetas a ser ignoradas por [esLint](https://eslint.org/docs/user-guide/configuring)
 ├───.eslintrc.js        --> Configuración de [esLint](https://eslint.org/docs/user-guide/configuring), para "linting" de archivos de javascript
 ├───.gitattributes      --> Configuración para Git
 ├───.npmignore          --> Archivos a ser ignorados por NPM
@@ -167,6 +173,32 @@ Eso generará la carpeta _node_modules_ con todas las dependencias requeridas.
 
 Iniciar el cliente ganache que se haya descargado. Por lo general, esto se logra, haciendo doble click en el acceso directo que haya generado la instalación.
 
+
+### PASO 4: Configurar variables de entorno
+
+El proyecto usa [Infura](https://infura.io/) para el despliegue en las redes de Ethereum y, así, evitar tener configurado un nodo local. Para ello, se requiere configurar las siguienes variables en un archivo de entorno (.env) o definirlas como variables del sistema operativo (con EXPORT o SET):
+
+__Definición en archivo .env:__
+
+(se puede ver un archivo de ejemplo [aquí](.env.sample))
+
+```
+- INFURA_KEY="": Key provista por el sitio de infura, para el proyecto que tengamos creado
+- MNEMONIC="": las 12 palabras que ayudan a crear la clave privada de la cuenta que tengamos en Metamask
+- OWNER_ADDRESS="": Dirección de Metamask que se usará para desplegar los contratos
+```
+
+__Definición mediante EXPORT:__
+
+```
+export INFURA_KEY="<your_infura_key>"
+export MNEMONIC="<metamask 12 mnemonic words>"
+export OWNER_ADDRESS="<metamask address>"
+```
+
+
+Estas variables no son necesarias para el despliegue en localhost, pero como se controla su definición para todas las redes, hay que ponerles algún valor por defecto, que para localhost, puede ser cualquier valor distinto de vacío.
+
 ---
 
 ## Flujo de los fuentes
@@ -182,15 +214,23 @@ npm run compile
 
 ## Testing 
 
+Se está utilizando para probar los smart contracts, el [framework Specron](https://github.com/fulldecent/framework-1).
 Se pueden correr los tests realizados para el contrato, con el comando:
 
 ```
+# Tests con specron
 npm run test
+
+# Tests con truffle
+# Hay que especificar la carpeta de tests, dado que no lo es la default de truffle
+truffle test ./src/tests/truffle/
+
 ```
 
+Ese comando, llama al framework specron y ejecuta los tests de la carpeta [src/tests](src/tests).
 
-### Migración a una blockchain <CORREGIR / REVISAR>
 
+### Migración a una blockchain
 
 Teniendo los contratos compilados e iniciado _Ganache_, se pueden migrar a la blockchain con el siguiente comando:
 
@@ -208,15 +248,44 @@ truffle migrate --reset --network rinkeby
 truffle migrate --reset --network ropsten
 ```
 
+En el archivo de configuración de truffle (truffle-config.js), está configurado la migración para infura.io. 
+Para que funcione, es necesario configurar tres variables de entorno: MNEMONIC,  INFURA_KEY y OWNER_ADDRESS, con los datos del proyecto que cada uno tenga en Infura y metamask. Eso se puede configurar en un archivo .env (Linux) o setear esas variables con un EXPORT (Windows / linux).
 
-### Distribución del proyecto <CORREGIR / REVISAR>
+### Minting
+
+Después de desplegarse el contrato en la blockchain, se podrá ver en Etherscan. La dirección del contrato, se piede tomar de la salida de la consola de truffle, luego de ejecutar la migración. En la siguiente imagen se puede ver un ejemplo de la salida de éste paso:
+
+![Salida Truffle migrate](images/truffle-migrate.png)
+
+En etherscan, se puede ver ingresando la siguiente dirección:
+
+URL: https://rinkeby.etherscan.io/address/<contract_address>.
 
 
-Se puede generar una carpeta con todos los archivos requeridos del proyecto, en caso de que se quiera distribuir (por ejemplo, para desplegar en un webServer. En mi máquina local, he usado tomcat, para lo cual hay un script deploy-tomcat.sh). Para ello, basta con ejecutar:
+[Aca](https://rinkeby.etherscan.io/address/0xC38eA247088ee22aeFCcf58671938e2E27875850) hay un ejemplo del contrato desplegado en Rinkeby.
+
+Luego, teniendo algunas variables configuradas en el entorno o archivo .env, se puede ejecutar el script [scripts/mint.js](scripts/mint.js) para interactuar con el contrato desplegado.
 
 ```
-npm run build
+# Variables a configurar 
+NFURA_KEY="": Key provista por el sitio de infura, para el proyecto que tengamos creado
+MNEMONIC="": las 12 palabras que ayudan a crear la clave privada de la cuenta que tengamos en Metamask
+OWNER_ADDRESS="": Dirección de Metamask que se usará para desplegar los contratos
+FACTORY_CONTRACT_ADDRESS=""
+NFT_CONTRACT_ADDRESS="<Direccion del contrato, obtenido luego de truffle migrate>"
+NETWORK="rinkeby"
 ```
+
+```
+# Para ejecutar el minting:
+node scripts/mint.js
+```
+
+Ejemplo de salida del script mint.js:
+
+
+![Salida mint.js](images/mint.png)
+
 
 ---
 
@@ -226,7 +295,4 @@ npm run build
 * La implementación del proyecto, se basa en el código fuente de [0xCert](https://github.com/0xcert/ethereum-erc721), quienes tienen una implementación estándard para tokens no fungibles (NTF) cumpliendo el estándar [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md). 
 
 - Para la realización del diagrama de clases en markdown, usamos [Mermaid](https://github.com/knsv/mermaid), y la ayuda de estee [post](http://mdp.tylingsoft.com/#class-diagram).
-
-
-
 

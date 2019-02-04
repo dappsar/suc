@@ -6,3 +6,4 @@ build
 .todo
 yarn.lock
 package-lock.json
+.env.development

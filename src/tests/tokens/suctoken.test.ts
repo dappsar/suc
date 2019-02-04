@@ -47,8 +47,8 @@ spec.beforeEach(async (ctx) => {
 
 spec.beforeEach(async (ctx) => {
   const nfToken = await ctx.deploy({ 
-    src: './build/sucToken.json',
-    contract: 'SucToken',
+    src: './build/sucTokenTest.json',
+    contract: 'SucTokenTest',
     args: ['Foo','F']
   });
   ctx.set('nfToken', nfToken);
@@ -195,4 +195,110 @@ spec.test('corectly burns a NFT', async (ctx) => {
   await ctx.reverts(() => nftoken.instance.methods.ownerOf(id1).call());
   await ctx.reverts(() => nftoken.instance.methods.tokenByIndex(0).call());
   await ctx.reverts(() => nftoken.instance.methods.tokenOfOwnerByIndex(bob, 0).call());
+});
+
+
+spec.test('burn should correctly set ownerToIds and idToOwnerIndex and idToIndex', async (ctx) => {
+  const nftoken = ctx.get('nfToken');
+  const owner = ctx.get('owner');
+  const bob = ctx.get('bob');
+  const id1 = ctx.get('id1');
+  const id2 = ctx.get('id2');
+  const id3 = ctx.get('id3');
+
+  await nftoken.instance.methods.mint(bob, id1).send({ from: owner });
+  await nftoken.instance.methods.mint(bob, id3).send({ from: owner });
+  await nftoken.instance.methods.mint(bob, id2).send({ from: owner });
+
+  //burn id1
+  await nftoken.instance.methods.burn(id1).send({ from: owner });
+
+  let idToOwnerIndexId3 = await nftoken.instance.methods.idToOwnerIndexWrapper(id3).call();
+  let idToOwnerIndexId2 = await nftoken.instance.methods.idToOwnerIndexWrapper(id2).call();
+  ctx.is(idToOwnerIndexId3, '1');
+  ctx.is(idToOwnerIndexId2, '0');
+
+  let ownerToIdsLenPrior = await nftoken.instance.methods.ownerToIdsLen(bob).call();
+  let ownerToIdsFirst = await nftoken.instance.methods.ownerToIdbyIndex(bob, 0).call();
+  let ownerToIdsSecond = await nftoken.instance.methods.ownerToIdbyIndex(bob, 1).call();
+  ctx.is(ownerToIdsLenPrior, '2');
+  ctx.is(ownerToIdsFirst, id2);
+  ctx.is(ownerToIdsSecond, id3);
+
+  let idToIndexFirst = await nftoken.instance.methods.idToIndexWrapper(id2).call();
+  let idToIndexSecond = await nftoken.instance.methods.idToIndexWrapper(id3).call();
+  ctx.is(idToIndexFirst, '0');
+  ctx.is(idToIndexSecond, '1');
+
+  let tokenIndexFirst = await nftoken.instance.methods.tokenByIndex(0).call();
+  let tokenIndexSecond = await nftoken.instance.methods.tokenByIndex(1).call();
+  ctx.is(tokenIndexFirst, id2);
+  ctx.is(tokenIndexSecond, id3);
+
+  //burn id2
+  await nftoken.instance.methods.burn(id2).send({ from: owner });
+
+  idToOwnerIndexId3 = await nftoken.instance.methods.idToOwnerIndexWrapper(id3).call();
+  ctx.is(idToOwnerIndexId3, '0');
+
+  ownerToIdsLenPrior = await nftoken.instance.methods.ownerToIdsLen(bob).call();
+  ownerToIdsFirst = await nftoken.instance.methods.ownerToIdbyIndex(bob, 0).call();
+  ctx.is(ownerToIdsLenPrior, '1');
+  ctx.is(ownerToIdsFirst, id3);
+
+  idToIndexFirst = await nftoken.instance.methods.idToIndexWrapper(id3).call();
+  ctx.is(idToIndexFirst, '0');
+
+  tokenIndexFirst = await nftoken.instance.methods.tokenByIndex(0).call();
+  ctx.is(tokenIndexFirst, id3);
+
+  //burn id3
+  await nftoken.instance.methods.burn(id3).send({ from: owner });
+
+  idToOwnerIndexId3 = await nftoken.instance.methods.idToOwnerIndexWrapper(id3).call();
+  ctx.is(idToOwnerIndexId3, '0');
+
+  ownerToIdsLenPrior = await nftoken.instance.methods.ownerToIdsLen(bob).call();
+  ctx.is(ownerToIdsLenPrior.toString(), '0');
+
+  await ctx.throws(() => nftoken.instance.methods.ownerToIdbyIndex(bob, 0).call());
+
+  idToIndexFirst = await nftoken.instance.methods.idToIndexWrapper(id3).call();
+  ctx.is(idToIndexFirst, '0');
+});
+
+spec.test('transfer should correctly set ownerToIds and idToOwnerIndex and idToIndex', async (ctx) => {
+  const nftoken = ctx.get('nfToken');
+  const owner = ctx.get('owner');
+  const bob = ctx.get('bob');
+  const sara = ctx.get('sara');
+  const id1 = ctx.get('id1');
+  const id2 = ctx.get('id2');
+  const id3 = ctx.get('id3');
+
+  await nftoken.instance.methods.mint(bob, id1).send({ from: owner });
+  await nftoken.instance.methods.mint(bob, id3).send({ from: owner });
+  await nftoken.instance.methods.mint(bob, id2).send({ from: owner });
+  await nftoken.instance.methods.transferFrom(bob, sara, id1).send({ from: bob });;
+
+  const idToOwnerIndexId1 = await nftoken.instance.methods.idToOwnerIndexWrapper(id1).call();
+  const idToOwnerIndexId3 = await nftoken.instance.methods.idToOwnerIndexWrapper(id3).call();
+  const idToOwnerIndexId2 = await nftoken.instance.methods.idToOwnerIndexWrapper(id2).call();
+  ctx.is(idToOwnerIndexId1, '0');
+  ctx.is(idToOwnerIndexId3, '1');
+  ctx.is(idToOwnerIndexId2, '0');
+
+  let ownerToIdsLenPrior = await nftoken.instance.methods.ownerToIdsLen(bob).call();
+  let ownerToIdsFirst = await nftoken.instance.methods.ownerToIdbyIndex(bob, 0).call();
+  let ownerToIdsSecond = await nftoken.instance.methods.ownerToIdbyIndex(bob, 1).call();
+  ctx.is(ownerToIdsLenPrior, '2');
+  ctx.is(ownerToIdsFirst, id2);
+  ctx.is(ownerToIdsSecond, id3);
+
+  await ctx.throws(() => nftoken.instance.methods.ownerToIdbyIndex(bob, 2).call());
+  
+  ownerToIdsLenPrior = await nftoken.instance.methods.ownerToIdsLen(sara).call();
+  ownerToIdsFirst = await nftoken.instance.methods.ownerToIdbyIndex(sara, 0).call();
+  ctx.is(ownerToIdsLenPrior, '1');
+  ctx.is(ownerToIdsFirst, id1);
 });
