@@ -29,8 +29,8 @@ install:
   - npm install -g coveralls
   - npm install
 
-script:
-  - npm run solhint && npm test
+#script:
+  #- npm run solhint && npm test
 
 after_script:
   - npm run coverage && cat coverage/lcov.info | coveralls
