@@ -22,15 +22,15 @@ services:
 
 before_install:
   - docker pull trufflesuite/ganache-cli
-  - docker run -d -p 8545:8545 trufflesuite/ganache-cli:latest -h 0.0.0.0
+  - docker run -d -p 7545:7545 trufflesuite/ganache-cli:latest -h 0.0.0.0
 
 install:
   - npm install -g truffle@4.1.15
   - npm install -g coveralls
   - npm install
 
-#script:
-  #- npm run solhint && npm test
+script:
+  - npm run solhint && npm test
 
 after_script:
   - npm run coverage && cat coverage/lcov.info | coveralls
