@@ -10,9 +10,10 @@ contract SucTokenTest is SucToken
     string memory _symbol
   )
     public
-    SucToken(_name, _symbol)
-  {
-  }
+    SucToken(_name, _symbol){
+      nftName = _name;
+      nftSymbol = _symbol;
+    }
 
   function checkUri(
     uint256 _tokenId
