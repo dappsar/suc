@@ -1,17 +1,39 @@
 require('babel-register')
 require('babel-polyfill')
 
-
 // I'll use Infura for publishing packages along with the truffle-hdwallet-provider NPM module
 // and a 12-word hd-wallet mnemonic that represents our Ethereum address on the Ropsten network.
-var HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("truffle-hdwallet-provider");
+const MNEMONIC = process.env.MNEMONIC;
+const INFURA_KEY = process.env.INFURA_KEY;
+const FROM_ADDRESS = process.env.OWNER_ADDRESS;
 
-// 12-word mnemonic
-var mnemonic = "flag general wool clog tunnel video clump bread close scene fortune grief";
-var keyRopsten = "c42adc493eb84216a15d6d482dc9301c";
-var keyRinkeby = "c42adc493eb84216a15d6d482dc9301c";
+if (!MNEMONIC || !INFURA_KEY || !FROM_ADDRESS) {
+  console.error("Please set a mnemonic, infura key and from address in an environment file (.env)");
+  return;
+}
 
 module.exports = {
+  contracts_directory: "./src/contracts",
+  contracts_build_directory: "./build/",
+  migrations_directory: "./src/migrations",
+  compilers: {
+    solc: {
+      version: "0.5.2",
+      optimizer: {
+          enabled: true,
+          runs: 200
+      }
+    }
+  },
+  mocha: {
+    useColors: true,
+    reporter: 'eth-gas-reporter',
+      reporterOptions : {
+        currency: 'USD',
+        gasPrice: 2
+      }
+  },
   networks: {
     development: {
       host: '127.0.0.1',
@@ -20,14 +42,16 @@ module.exports = {
       gas: 6721975
     },
     ropsten: {
-      provider: new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/" + keyRopsten),
+      provider: new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/v3/" + INFURA_KEY),
+      from: FROM_ADDRESS,
       network_id: 3, // official id of the ropsten network,
       gas: 4200000
     },
     rinkeby: {
-      provider: new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/" + keyRinkeby),
+      provider: new HDWalletProvider(MNEMONIC, "https://rinkeby.infura.io/v3/" + INFURA_KEY),
+      from: FROM_ADDRESS,
       network_id: 4, // official id of the rinkeby network,
-      gas: 1803609
+      gas: 7000000
     }
   }
 };
