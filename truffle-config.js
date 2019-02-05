@@ -52,6 +52,14 @@ module.exports = {
       from: FROM_ADDRESS,
       network_id: 4, // official id of the rinkeby network,
       gas: 7000000
+    },
+    telsius: {
+      host: "34.241.169.145",
+      port: 22000,
+      network_id: "*", // Match any network id
+      gas: 0xffffff,
+      gasPrice: 0x0,
+      from: //address que os tengo que preparar y enviar las claves
     }
   }
 };
