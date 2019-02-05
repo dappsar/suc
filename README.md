@@ -1,6 +1,6 @@
-[![Travis Build Status](https://travis-ci.org/dappsar/suc.svg?branch=feature%2Fstart)](https://travis-ci.org/dappsar/suc) &nbsp;
-[![CircleCI Build Status](https://circleci.com/gh/dappsar/suc/tree/feature%2Fstart.svg?style=svg)](https://circleci.com/gh/dappsar/suc/tree/feature%2Fstart) &nbsp;
-[![Coverage Status](https://coveralls.io/repos/github/dappsar/suc/badge.svg?branch=feature%2Fstart)](https://coveralls.io/repos/github/dappsar/suc?branch=feature%2Fstart)
+[![Travis Build Status](https://travis-ci.org/dappsar/suc.svg?branch=master)](https://travis-ci.org/dappsar/suc) &nbsp;
+[![CircleCI Build Status](https://circleci.com/gh/dappsar/suc/tree/master.svg?style=svg)](https://circleci.com/gh/dappsar/suc/tree/master) &nbsp;
+[![Coverage Status](https://coveralls.io/repos/github/dappsar/suc/badge.svg?branch=master)](https://coveralls.io/repos/github/dappsar/suc?branch=master)
 
 
 # Tokenización de activos de ONG "Salva un Caballo"
