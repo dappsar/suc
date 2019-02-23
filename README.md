@@ -9,7 +9,7 @@
 
 Se mantiene en éste repositorio, la implementación de los activos de la ONG "Salva un Caballo", haciendo uso del estándar [ERC-721](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md), para representar los activos mediante un token no fungible ([TNF](https://en.wikipedia.org/wiki/Non-fungible_token)).
 
-Este repositorio, es parte del trabajo de fin de máster (TFM), correspondiente al Máster de blockchain, cripto-economía y Ethereum, de la [Universidad de Alcal](https://www.uah.es/es/).
+Este repositorio, es parte del trabajo de fin de máster (TFM), correspondiente al Máster de blockchain, cripto-economía y Ethereum, de la [Universidad de Alcalá](https://www.uah.es/es/).
 
 ## Contenido
 

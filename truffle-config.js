@@ -8,10 +8,12 @@ const MNEMONIC = process.env.MNEMONIC;
 const INFURA_KEY = process.env.INFURA_KEY;
 const FROM_ADDRESS = process.env.OWNER_ADDRESS;
 
+/*
 if (!MNEMONIC || !INFURA_KEY || !FROM_ADDRESS) {
   console.error("Please set a mnemonic, infura key and from address in an environment file (.env)");
   return;
 }
+*/
 
 module.exports = {
   contracts_directory: "./src/contracts",
@@ -59,7 +61,7 @@ module.exports = {
       network_id: "*", // Match any network id
       gas: 0xffffff,
       gasPrice: 0x0,
-      from: //address que os tengo que preparar y enviar las claves
+      from: "0x42339e31a153db90c4f9af3326fc9c541b18225e"
     }
   }
 };
