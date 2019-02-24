@@ -134,7 +134,7 @@ SafeMath :  <<'library'>>
 
 ## Preparación del ambiente
 
-Para la ejecución del proyecto, es necesario cumplir con algunos requisitos, que se descrien a continuación. Luego, se detalla cómo relaizar el despliegue del proyecto en ambiente local. 
+Para la ejecución del proyecto, es necesario cumplir con algunos requisitos, que se describen a continuación. Luego, se detalla cómo relaizar el despliegue del proyecto en ambiente local. 
 
 ### Requisitos
 
