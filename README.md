@@ -253,7 +253,7 @@ Para que funcione, es necesario configurar tres variables de entorno: MNEMONIC, 
 
 ### Minting
 
-Después de desplegarse el contrato en la blockchain, se podrá ver en Etherscan. La dirección del contrato, se piede tomar de la salida de la consola de truffle, luego de ejecutar la migración. En la siguiente imagen se puede ver un ejemplo de la salida de éste paso:
+Después de desplegarse el contrato en la blockchain, se podrá ver en Etherscan. La dirección del contrato, se puede tomar de la salida de la consola de truffle, luego de ejecutar la migración. En la siguiente imagen se puede ver un ejemplo de la salida de éste paso:
 
 ![Salida Truffle migrate](images/truffle-migrate.png)
 
