@@ -15,25 +15,31 @@ Este repositorio, es parte del trabajo de fin de máster (TFM), correspondiente 
 
 En éste documento se describe:
 
-- [Estructura del proyecto](https://github.com/dappsar/suc/tree/feature/start#estructura-del-proyecto)
+- [Estructura del proyecto](https://github.com/dappsar/suc/#estructura-del-proyecto)
     
-    * [Carpetas y archivos](https://github.com/dappsar/suc/tree/feature/start#carpetas-y-archivos)
-    * [Diagrama de clases de los contratos e interfaces](https://github.com/dappsar/suc/tree/feature/start#carpetas-y-archivos)
+    * [Carpetas y archivos](https://github.com/dappsar/suc/#carpetas-y-archivos)
+    * [Diagrama de clases de los contratos e interfaces](https://github.com/dappsar/suc/#carpetas-y-archivos)
+    * [Contratos e Interfaces](https://github.com/dappsar/suc/#carpetas-y-archivos)
 
-- [Preparación del ambiente](https://github.com/dappsar/suc/tree/feature/start#preparaci%C3%B3n-del-ambiente)
+- [Preparación del ambiente](https://github.com/dappsar/suc/#preparaci%C3%B3n-del-ambiente)
 
-    * [Requisitos](https://github.com/dappsar/suc/tree/feature/start#requisitos)
-    * [Instalación](https://github.com/dappsar/suc/tree/feature/start#instalación)
+    * [Requisitos](https://github.com/dappsar/suc/#requisitos)
+    * [Instalación](https://github.com/dappsar/suc/#instalación)
 
-- [Flujo de los fuentes](https://github.com/dappsar/suc/tree/feature/start#floju-de-los-fuentes)
+- [Flujo de los fuentes](https://github.com/dappsar/suc/#floju-de-los-fuentes)
 
-    * Compilación
-    * Testing
-    * Despliegue
-    * Distribución
-    * Minting
+    * [Compilación](https://github.com/dappsar/suc#compilaci%C3%B3n)
+    * [Testing](https://github.com/dappsar/suc#testing)
+    * [Migración a una blockchain](https://github.com/dappsar/suc#testing)
+    * [Minting](https://github.com/dappsar/suc#testing)
 
-- [Créditos](https://github.com/dappsar/suc/tree/feature/start#créditos)
+- [despliegue en Marketplaces](https://github.com/dappsar/suc#despliegues-en-marketplaces)
+
+    * [Despliegue en rinkeby usando el compilador web Remix](https://github.com/dappsar/suc#despliegue-en-rinkeby-usando-el-compilador-web-remix)
+    * [openSea](https://github.com/dappsar/suc#opensea)
+    * [RareBits](https://github.com/dappsar/suc#rare-bits)
+
+- [Créditos](https://github.com/dappsar/suc/#créditos)
 
 ---
 
