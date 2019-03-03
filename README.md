@@ -289,6 +289,101 @@ Ejemplo de salida del script mint.js:
 
 ---
 
+## Despliegues en marketplaces
+
+El contrato al respetar la interface ERC-721, puede ser desplegado en distintos marketplaces, como [OpenSea](https://opensea.io/) y [RareBits](https://rarebits.io/).
+
+Para desplegar el contrato en esos marketplaces, es necesario subirlo a la red que querramos (por ejemplo, [rinkeby](https://rinkeby.etherscan.io/)) y luego realizar el proceso de Minting, para crear los tokens. Hecho eso, se puede ingresar a la misma red, en la URL del marketplace y seguir el wizard que brindan para publicarlo, por lo general, es ingresar la dirección del contrato y listo. 
+
+### Despliegue en rinkeby usando el compilador web Remix
+
+#### Compilación
+
+Para desplegar el contrato a través del compilador remix, basta con ingresar al sitio del compilador en [https://remix.ethereum.org](https://remix.ethereum.org/) y copiar el código de nuestro contrato.  Como nuestro contrato tiene dependencias con otros, hay que copiar el código del resto también. En el [siguiente archivo](src/toremix/deploy.in.remix.sol), se deja todo el código junto.
+
+Luego, se tiene que seleccionar el compilador correspondiente a la versión de nuestro contrato: soljson-v0.5.2+commit.1df8f40c
+(se puede ingresar directamente a la url de Remix con esa versión en éste [link](https://remix.ethereum.org/#optimize=false&version=soljson-v0.5.2+commit.1df8f40c.js)).
+
+Copiado el código, compilamos el contrato y, de no haber errores, podemos ir a la solapa "Run" para desplegar el contrato.
+
+![Remix Compile](images/remix-compile.png)
+
+#### Despliegue
+
+En la Solapa run, tenemos que elegir en la lista desplegable el nombre de nuestro contrato "SucToken" y completar las propiedades _name y _symbol. Luego presionamos "deploy".
+
+![Remix Deploy](images/remix-deploy.png)
+
+Podemos verificar el contrato desplegado en la Etherscan, de la red Rinkeby. En el siguiente [link](https://rinkeby.etherscan.io/address/0x89593dd8af8d3a6fd278c08f373d22669dda1cfb), se puede ver un ejemplo de despliegue realizado.
+
+Contract Address: 0x89593dd8af8d3a6fd278c08f373d22669dda1cfb
+MetaMask Account: 0x0Fb80359dD096A1Ec1FbfDC07ddEBc2003272b0c
+
+![Contract Deployed](images/contract-deployed.png)
+
+#### Completar el código del contrato
+
+En etherscan, podemos completar el código fuente del contrato, para que quede verificado. 
+Esto se puede realizar, haciendo un copy/paste del código en Remix, a la solapa "code" del contrato.  Adicionalmente, nos pedirá la versión del compilador usado (que hay que poner exactamente la misma que usamos en remix: soljson-v0.5.2+commit.1df8f40c), el nombrel del contrato "SucToken" y si queremos optimización o no (elegir que no). 
+
+![Contract Deployed](images/verify-contract-code.png)
+
+
+#### Minting
+
+Teniendo el contrato compilado y su còdigo verificado en Etherscan, podemos ejecutar los métodos de nuestro contrato. Se puede utilizar la misma interfaz de Remix para ello. 
+
+En la siguiente imagen, se puede ver la ejecución del método "mint", que permite la creación de un token, solo hay que completar:
+
+* La dirección del owner, que ponemos la misma con la que se deplegó el contrato
+* Un tokenId
+* Una dirección url, que contenga la información de la metadata del token. Aca ingresamos una URL de un archivo json subido previamente a IPFS, de la red rinkeby de Infura. 
+
+![Remix Mint](images/remix-mint.png)
+
+Una vez finalizada la transacción, se puede comprobar en Etherscan. 
+Ejemplo: https://rinkeby.etherscan.io/tx/0x0e543b8cf2f25ad43bcf8252374007051f66aaf41addc61092b234c55850f000
+
+
+![Mint Transaction](images/mint-transaction.png)
+
+### OpenSea
+
+Una vez que se tiene el contrato desplegado en la red de Ethereum y algún token generado (con el proceso de minting), podemos subirlo al marketplace. 
+Para subirlo a OpenSea, tenemos que ir a la dirección de la misma red en donde subimos el contrato. En éste caso, Rinkeby: https://rinkeby.opensea.io/get-listed
+
+En el menú *Develop* / *Submit Dapps*, podemos subir nuestro contrato. 
+
+![Open Sea Submit](images/open-sea-submit-dapps.png)
+
+Luego, nos pide la dirección del contrato, en donde ingresamos la dirección de EtherScan (0x89593dd8af8d3a6fd278c08f373d22669dda1cfb) y completamos el wizard de Open Sea, que nos mostrará los tokens que tiene el contrato.
+
+![Open Sea process 1](images/open-sea-process-1.png)
+
+![Open Sea process 2](images/open-sea-process-2.png)
+
+* Mint Transaction en EtherScan: https://rinkeby.etherscan.io/tx/0x0e543b8cf2f25ad43bcf8252374007051f66aaf41addc61092b234c55850f000
+* Como se ve en openSea: https://rinkeby.opensea.io/assets/0x89593dd8af8d3a6fd278c08f373d22669dda1cfb/1
+
+![Open Sea Deployed](images/open-sea-deployed.png)
+
+
+### Rare Bits
+
+Para subirlo a RareBits, tenemos que ingresar a la dirección de la red Rinkeby en [https://rinkeby.rarebits.io/](https://rinkeby.rarebits.io/) y seleccionar la opción del menú *submit dapp*. 
+
+![RareBits Submit Dapp](images/rearebits-submit-dapp.png)
+
+Ingresamos la dirección del contrato: 0x89593dd8af8d3a6fd278c08f373d22669dda1cfb y seguimos los pasos del wizard.
+
+![RareBits Bits Verified](images/rarebits-verified.png)
+
+
+Uploaded in rareBits: https://rinkeby.rarebits.io/collection/tmpsuctoken4
+
+![RareBits Deployed](images/rarebits-deployed.png)
+
+---
 
 ## Créditos
 
