@@ -33,7 +33,7 @@ En éste documento se describe:
     * [Migración a una blockchain](https://github.com/dappsar/suc#testing)
     * [Minting](https://github.com/dappsar/suc#testing)
 
-- [despliegue en Marketplaces](https://github.com/dappsar/suc#despliegues-en-marketplaces)
+- [Despliegue en Marketplaces](https://github.com/dappsar/suc#despliegues-en-marketplaces)
 
     * [Despliegue en rinkeby usando el compilador web Remix](https://github.com/dappsar/suc#despliegue-en-rinkeby-usando-el-compilador-web-remix)
     * [openSea](https://github.com/dappsar/suc#opensea)
@@ -295,7 +295,7 @@ Ejemplo de salida del script mint.js:
 
 ---
 
-## Despliegues en marketplaces
+## Despliegue en marketplaces
 
 El contrato al respetar la interface ERC-721, puede ser desplegado en distintos marketplaces, como [OpenSea](https://opensea.io/) y [RareBits](https://rarebits.io/).
 
