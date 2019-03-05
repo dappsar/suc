@@ -59,7 +59,7 @@ spec.beforeEach(async (ctx) => {
   });
   ctx.set('mToken', mToken);
 
-  //console.log (mToken.address;
+  //  console.log (mToken.address;
   //await mProxy.instance.methods.upgradeTo(mToken.instance.address).call();
 
 });
