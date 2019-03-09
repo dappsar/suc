@@ -66,12 +66,19 @@ spec.beforeEach(async (ctx) => {
 
 spec.test('correctly checks all the supported interfaces', async (ctx) => {
   const mToken = ctx.get('mToken');
-  const mTokenInterface = await mToken.instance.methods.supportsInterface('0x80ac58cd').call();
-  const mTokenMetadataInterface = await mToken.instance.methods.supportsInterface('0x5b5e139f').call();
+  // ERC721
+  const mTokenInterface = await mToken.instance.methods.supportsInterface('0x80ac58cd').call(); 
+  // ERC721Metadata
+  const mTokenMetadataInterface = await mToken.instance.methods.supportsInterface('0x5b5e139f').call(); 
+  // ERC721Enumerable
   const mTokenEnumerableInterface = await mToken.instance.methods.supportsInterface('0x780e9d63').call();
+  // ERC165
+  const mErc165 = await mToken.instance.methods.supportsInterface('0x01ffc9a7').call();
+  
   ctx.is(mTokenInterface, true);
   ctx.is(mTokenMetadataInterface, true);
   ctx.is(mTokenEnumerableInterface, true);
+  ctx.is(mErc165, true);
 });
 
 spec.test('returns the correct issuer name', async (ctx) => {
