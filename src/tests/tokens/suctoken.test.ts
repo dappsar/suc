@@ -46,12 +46,22 @@ spec.beforeEach(async (ctx) => {
 });
 
 spec.beforeEach(async (ctx) => {
+  const mProxy = await ctx.deploy({ 
+    src: './build/proxy.json',
+    contract: 'Proxy'
+  });
+  ctx.set('mProxy', mProxy);
+
   const mToken = await ctx.deploy({ 
     src: './build/sucTokenTest.json',
     contract: 'SucTokenTest',
     args: ['Foo','F']
   });
   ctx.set('mToken', mToken);
+
+  //  console.log (mToken.address;
+  //await mProxy.instance.methods.upgradeTo(mToken.instance.address).call();
+
 });
 
 spec.test('correctly checks all the supported interfaces', async (ctx) => {

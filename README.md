@@ -50,19 +50,24 @@ A continuación se describen las carpetas y archivos (del raíz) que forman part
 ### Carpetas y archivos
 
 ```bash
+├───.circleci           --> Configuración de circle-ci
 ├───build               --> Carpeta con los contratos en Json
 ├───doc                 --> Documentación del proyecto
 ├───images              --> Algunas imagenes del readme
+├───scripts             --> Archivos para facilitar acciones (ejemplo: el proceso de minting)
 └───src
     ├───contracts       
     │   ├───math        --> Support Math Utils Library
     │   ├───ownership   --> Support Ownable Contract
     │   ├───principal   --> NFT Principal
+    │   ├───proxy       --> Contrato para proxy
     │   ├───tokens      --> Support ERC721 Interfaces (enumerable, metadata, receiver)
     │   └───utils       --> Supports libraries (ERC165, AddressUtils and Supports Interface)
+    ├───migrations      --> Contratos de truffle para migración       
     └───tests           
         ├───principal   --> Contract Tests
         └───tokens      --> Javascript Tests
+    ├───toRemix         --> Todos los contratos en un solo archivo para deploy en Remix       
 ├───.babelrc            --> Configuración de [Babel](https://babeljs.io/docs/en/)
 ├───.coveralls.yml      --> Configuración de [Coveralls.io](https://coveralls.io/)
 ├───.editorconfig       --> Configuración para el editor
@@ -70,15 +75,14 @@ A continuación se describen las carpetas y archivos (del raíz) que forman part
 ├───.eslintignore       --> Archivos / carpetas a ser ignoradas por [esLint](https://eslint.org/docs/user-guide/configuring)
 ├───.eslintrc.js        --> Configuración de [esLint](https://eslint.org/docs/user-guide/configuring), para "linting" de archivos de javascript
 ├───.gitattributes      --> Configuración para Git
+├───.gitignore          --> Archivos / carpetas a ser ignoradas por git
 ├───.npmignore          --> Archivos a ser ignorados por NPM
 ├───.solhint.json       --> Configuración de [solHint](https://protofire.github.io/solhint/), para "linting" código en Solidity
-├───.travis.yml         --> Script de circle-ci para Integración contínua
 ├───LICENSE             --> Licencia de los fuentes
 ├───package.json        --> El archivo de npm para las dependencias y scripts
 ├───README.md           --> Este archivo!
 ├───truffle-config.js   --> Configuración de Truffle
-├───tsconfig.json       --> Configuración de TypeScript (los tests)
-└── .gitignore          --> Archivos / carpetas a ser ignoradas por git
+└── tsconfig.json       --> Configuración de TypeScript (los tests)
 ```
 
 
@@ -123,18 +127,18 @@ SafeMath :  <<'library'>>
 ### Contratos e Interfaces
 
 * [principal/sucToken.sol](src/contracts/principal/sucToken.sol): Es el contrato principal, que tiene la implementación de los activos de la ONG.
-- [tokens/nfToken.sol]()
-* [tokens/nfTokenEnumerable](src/contracts/tokens/nfTokenEnumerable.sol): 
-- [tokens/nfTokenMetadata](src/contracts/tokens/nfTokenMetadata.sol): 
-* [tokens/erc721.sol]()
-- [tokens/erc721Enumerable.sol]()
-* [tokens/erc721Metadata.sol]()
-- [tokens/erc721TokenReceiver.sol]()
-* [ownershiop/ownable.sol]()
-- [math/safeMath.sol]()
-* [utils/addressUtils.sol]()
-- [utils/erc165.sol]()
-* [utils/supportsInterface.sol]()
+- [tokens/nfToken.sol](src/contracts/tokens/nfToken.sol): Implementación de la interfaz erc721. Además de supportsInterface. 
+* [tokens/nfTokenEnumerable](src/contracts/tokens/nfTokenEnumerable.sol): Implementación de la interfaz erc721Enumerable.
+- [tokens/nfTokenMetadata](src/contracts/tokens/nfTokenMetadata.sol): Implementación de la interfaz ercMetadata.
+* [tokens/erc721.sol](src/contracts/tokens/erc721.sol): Interfaz con la implementación estándar de ERC-721, correspondiente al EIP-721.
+- [tokens/erc721Enumerable.sol](src/contracts/tokens/erc721Enumerable.sol): Interfaz con la implementación estándar de la extensión enumerable, definida en el EIP-721.
+* [tokens/erc721Metadata.sol](src/contracts/tokens/erc721Metadata.sol): Interfaz con la implementación estándar de la extensión de metadata, definida en el EIP-721.
+- [tokens/erc721TokenReceiver.sol](src/contracts/tokens/erc721TokenReceiver.sol): Interfaz con la implementación estándar de la extensión para transferencias seguras, definida en el EIP-721.
+* [ownership/ownable.sol](src/contracts/ownership/ownable.sol): Proporciona funciones para el control de autorización de usuarios, una dirección de propietario (owner) del contrato y simplifica la implementación de permisos de usuarios.
+- [math/safeMath.sol](src/contracts/math/safeMath.sol): Esta es una librería que desarrolló el equipo de openZeppelin para tener en cuenta verificaciones en cálculos matemáticos de los contratos inteligentes y evitar errores al hacer uso de operadores matemáticos sin un resguardo lógico ante posible fallos, como un overflow en la suma de dos unit256 que tenga como resultado un valor mayor al soportado por la variable a la que se asigna éste último.
+* [utils/addressUtils.sol](src/contracts/utils/addressUtils.sol): Una librería con poco código (una sola función), para un control de las direcciones de los contratos.
+- [utils/erc165.sol](src/contracts/utils/erc165.sol): Ésta es una interfaz que provee al contrato de métodos estándares para determinar que otras interfaces implementa. 
+* [utils/supportsInterface.sol](src/contracts/utils/supportsInterface.sol): Este contrato es la implementación de la interfaz ERC165, que 0xCert toma la implementación de openZeppelin  y le hizo un cambio de nombre, eliminó el método _registerInterface y cambio de private a internal la variable _supportedInterfaces.
 
 ---
 
@@ -373,7 +377,7 @@ En las siguientes direcciones, podemos ver la transacción del proceso de mintin
 
 
 * Mint Transaction en EtherScan: https://rinkeby.etherscan.io/tx/0x0e543b8cf2f25ad43bcf8252374007051f66aaf41addc61092b234c55850f000
-* Como se ve en openSea: https://rinkeby.opensea.io/assets/0x89593dd8af8d3a6fd278c08f373d22669dda1cfb/1
+* Como se ve en openSea: https://rinkeby.opensea.io/assets/0x89593dd8af8d3a6fd278c08f373d22669dda1cfb/4
 
 ![Open Sea Deployed](images/open-sea-deployed.png)
 
