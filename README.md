@@ -127,18 +127,18 @@ SafeMath :  <<'library'>>
 ### Contratos e Interfaces
 
 * [principal/sucToken.sol](src/contracts/principal/sucToken.sol): Es el contrato principal, que tiene la implementación de los activos de la ONG.
-- [tokens/nfToken.sol](src/contracts/tokens/nfToken.sol):
-* [tokens/nfTokenEnumerable](src/contracts/tokens/nfTokenEnumerable.sol): 
-- [tokens/nfTokenMetadata](src/contracts/tokens/nfTokenMetadata.sol): 
-* [tokens/erc721.sol](src/contracts/tokens/erc721.sol):
-- [tokens/erc721Enumerable.sol](src/contracts/tokens/erc721Enumerable.sol):
-* [tokens/erc721Metadata.sol](src/contracts/tokens/erc721Metadata.sol):
-- [tokens/erc721TokenReceiver.sol](src/contracts/tokens/erc721TokenReceiver.sol):
-* [ownership/ownable.sol](src/contracts/ownership/ownable.sol):
-- [math/safeMath.sol](src/contracts/math/safeMath.sol):
-* [utils/addressUtils.sol](src/contracts/utils/addressUtils.sol):
-- [utils/erc165.sol](src/contracts/utils/erc165.sol):
-* [utils/supportsInterface.sol](src/contracts/utils/supportsInterface.sol):
+- [tokens/nfToken.sol](src/contracts/tokens/nfToken.sol): Implementación de la interfaz erc721. Además de supportsInterface. 
+* [tokens/nfTokenEnumerable](src/contracts/tokens/nfTokenEnumerable.sol): Implementación de la interfaz erc721Enumerable.
+- [tokens/nfTokenMetadata](src/contracts/tokens/nfTokenMetadata.sol): Implementación de la interfaz ercMetadata.
+* [tokens/erc721.sol](src/contracts/tokens/erc721.sol): Interfaz con la implementación estándar de ERC-721, correspondiente al EIP-721.
+- [tokens/erc721Enumerable.sol](src/contracts/tokens/erc721Enumerable.sol): Interfaz con la implementación estándar de la extensión enumerable, definida en el EIP-721.
+* [tokens/erc721Metadata.sol](src/contracts/tokens/erc721Metadata.sol): Interfaz con la implementación estándar de la extensión de metadata, definida en el EIP-721.
+- [tokens/erc721TokenReceiver.sol](src/contracts/tokens/erc721TokenReceiver.sol): Interfaz con la implementación estándar de la extensión para transferencias seguras, definida en el EIP-721.
+* [ownership/ownable.sol](src/contracts/ownership/ownable.sol): Proporciona funciones para el control de autorización de usuarios, una dirección de propietario (owner) del contrato y simplifica la implementación de permisos de usuarios.
+- [math/safeMath.sol](src/contracts/math/safeMath.sol): Esta es una librería que desarrolló el equipo de openZeppelin para tener en cuenta verificaciones en cálculos matemáticos de los contratos inteligentes y evitar errores al hacer uso de operadores matemáticos sin un resguardo lógico ante posible fallos, como un overflow en la suma de dos unit256 que tenga como resultado un valor mayor al soportado por la variable a la que se asigna éste último.
+* [utils/addressUtils.sol](src/contracts/utils/addressUtils.sol): Una librería con poco código (una sola función), para un control de las direcciones de los contratos.
+- [utils/erc165.sol](src/contracts/utils/erc165.sol): Ésta es una interfaz que provee al contrato de métodos estándares para determinar que otras interfaces implementa. 
+* [utils/supportsInterface.sol](src/contracts/utils/supportsInterface.sol): Este contrato es la implementación de la interfaz ERC165, que 0xCert toma la implementación de openZeppelin  y le hizo un cambio de nombre, eliminó el método _registerInterface y cambio de private a internal la variable _supportedInterfaces.
 
 ---
 
