@@ -13,9 +13,6 @@ contract SucToken is
   Ownable
 {
 
-  // The address of the contract creator
-  address internal creator;
-
 	// Usado para detener el contrato (parte de implementación de circuit-breakers)
 	bool private stopped = false;
 
@@ -30,9 +27,6 @@ contract SucToken is
   )
     public
   {
-    // Store the address of the creator
-    creator = msg.sender;
-
     nftName = _name;
     nftSymbol = _symbol;
   }
