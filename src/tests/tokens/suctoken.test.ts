@@ -11,9 +11,11 @@ interface Data {
   jane?: string;
   sara?: string;
   zeroAddress?: string;
+  id0?: string;
   id1?: string;
   id2: string;
   id3?: string;
+  uri0?: string;
   uri1?: string;
   uri2?: string;
   uri3?: string;
@@ -37,12 +39,14 @@ spec.beforeEach(async (ctx) => {
 });
 
 spec.beforeEach(async (ctx) => {
+  ctx.set('id0', '0');
   ctx.set('id1', '1');
   ctx.set('id2', '2');
   ctx.set('id3', '3');
-  ctx.set('uri1', 'http://0xcert.org/1');
-  ctx.set('uri2', 'http://0xcert.org/2');
-  ctx.set('uri3', 'http://0xcert.org/3');
+  ctx.set('uri0', 'http://dummy.org/0');
+  ctx.set('uri1', 'http://dummy.org/1');
+  ctx.set('uri2', 'http://dummy.org/2');
+  ctx.set('uri3', 'http://dummy.org/3');
 });
 
 spec.beforeEach(async (ctx) => {
@@ -101,11 +105,12 @@ spec.test('returns the correct NFT id 1 url', async (ctx) => {
   const bob = ctx.get('bob');
   const id1 = ctx.get('id1');
   const uri1 = ctx.get('uri1');
-
+  
   await mToken.instance.methods.mint(bob, id1, uri1).send({ from: owner });
   const tokenURI = await mToken.instance.methods.tokenURI(id1).call();
   ctx.is(tokenURI, uri1);
 });
+
 
 spec.test('throws when trying to get URI of invalid NFT ID', async (ctx) => {
   const mToken = ctx.get('mToken');
@@ -153,6 +158,17 @@ spec.test('returns the correct token by index', async (ctx) => {
   ctx.is(tokenIndex1, id2);
   ctx.is(tokenIndex2, id3);
 });
+
+spec.test('throws when trying to mint with Id 0', async (ctx) => {
+  const mToken = ctx.get('mToken');
+  const owner = ctx.get('owner');
+  const bob = ctx.get('bob');
+  const id0 = ctx.get('id0');
+  const uri0 = ctx.get('uri0');
+  
+  await ctx.reverts(() => mToken.instance.methods.mint(bob, id0, uri0).send({ from: owner }));
+});
+
 
 spec.test('throws when trying to get token by non-existing index', async (ctx) => {
   const mToken = ctx.get('mToken');
