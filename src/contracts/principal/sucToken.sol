@@ -13,6 +13,9 @@ contract SucToken is
   Ownable
 {
 
+	// Usado para detener el contrato (parte de implementación de circuit-breakers)
+	bool private stopped = false;
+
   /**
    * @dev Contract constructor.
    * @param _name A descriptive name for a collection of NFTs.
@@ -32,6 +35,7 @@ contract SucToken is
    * @dev Mints a new NFT.
    * @param _to The address that will own the minted NFT.
    * @param _tokenId of the NFT to be minted by the msg.sender.
+   * @dev 'stopInEmergency' circuit-breaker pattern implementation
    */
   function mint(
     address _to,
@@ -39,6 +43,7 @@ contract SucToken is
   )
     external
     onlyOwner
+    stopInEmergency
   {
     super._mint(_to, _tokenId);
   }
@@ -56,6 +61,7 @@ contract SucToken is
   )
     external
     onlyOwner
+    stopInEmergency
   {
     super._mint(_to, _tokenId);
     super._setTokenUri(_tokenId, _uri);
@@ -64,10 +70,34 @@ contract SucToken is
   /**
    * @dev Removes a NFT from owner.
    * @param _tokenId Which NFT we want to remove.
+   * @dev 'stopInEmergency' circuit-breaker pattern implementation
    */
-  function burn(uint256 _tokenId) external onlyOwner
+  function burn(uint256 _tokenId) external onlyOwner stopInEmergency
   {
     super._burn(_tokenId);
   }
+
+	/**
+		* @dev Cambiar un flag (stopped) en caso de algun error que requiera la 
+		* @dev implementación de detención de código (circuit-breaker)
+		* @dev Hace uso del modificador 'onlyOwner' de la interfaz @Ownable
+		*/
+	function toggleContractActive() onlyOwner external
+	{
+		stopped = !stopped;
+	}
+
+	/**
+		* @dev Implementación de modificador para detener la ejecución de una función
+		* @dev en caso de emergencia
+	  */
+	modifier stopInEmergency { if (!stopped) _; }
+
+	/**
+		* @dev Implementación de modificador para ejecución de una función solo en caso
+		* @dev de emergencia
+		* @dev por el momento, modificador no utiliza den alguna función
+		*/
+	modifier onlyInEmergency { if (stopped) _; }
 
 }

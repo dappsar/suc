@@ -17,4 +17,4 @@ module.exports = function (deployer, network) {
       return console.log("SucToken Address: " + sucToken.address);
     });
     */
-};
+}; 
