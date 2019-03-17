@@ -4,6 +4,7 @@
     "indent": ["error", 2],
     "bracket-align": true,
     "two-lines-top-level-separator": false,
-    "max-line-length": 100
+    "max-line-length": 100,
+    "func-order": "warn"
   }
 }

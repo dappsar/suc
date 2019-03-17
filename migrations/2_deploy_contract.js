@@ -6,15 +6,15 @@ module.exports = function (deployer, network) {
       web3.personal.unlockAccount("0x42339e31a153db90c4f9af3326fc9c541b18225e", "l@z@r0");
     }
 
+    /*
     deployer.deploy(sucToken, "sucToken1", "suc").then(function(){
       return console.log("SucToken Address: " + sucToken.address);
     });
-
-    /*
-    deployer.deploy(proxy).then(function(){
-      deployer.deploy(sucToken, "sucToken1", "suc");
-      console.log("Proxy Address: " + proxy.address);
-      return console.log("SucToken Address: " + sucToken.address);
-    });
     */
+    deployer.deploy(proxy).then(function(){
+      return deployer.deploy(sucToken, "sucToken1", "suc").then(function(){
+        return console.log("SucToken Address: " + sucToken.address + ", proxy Address: " + proxy.address);
+      });
+    });
+    
 }; 

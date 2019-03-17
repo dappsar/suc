@@ -123,7 +123,8 @@ contract NFToken is
     uint256 _tokenId
   )
   {
-    require(idToOwner[_tokenId] != address(0));
+    require(_tokenId != 0 &&
+            idToOwner[_tokenId] != address(0));
     _;
   }
 
@@ -348,6 +349,7 @@ contract NFToken is
   )
     internal
   {
+    require(_tokenId != 0);
     require(_to != address(0));
     require(idToOwner[_tokenId] == address(0));
 

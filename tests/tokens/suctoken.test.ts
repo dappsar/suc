@@ -15,12 +15,10 @@ interface Data {
   id1?: string;
   id2: string;
   id3?: string;
-  id99?:string;
   uri0?: string;
   uri1?: string;
   uri2?: string;
   uri3?: string;
-  uri99?: string;
 }
 
 /**
@@ -45,7 +43,6 @@ spec.beforeEach(async (ctx) => {
   ctx.set('id1', '1');
   ctx.set('id2', '2');
   ctx.set('id3', '3');
-  ctx.set('id99', '399');
   ctx.set('uri0', 'http://dummy.org/0');
   ctx.set('uri1', 'http://dummy.org/1');
   ctx.set('uri2', 'http://dummy.org/2');
@@ -117,8 +114,9 @@ spec.test('returns the correct NFT id 1 url', async (ctx) => {
 
 spec.test('throws when trying to get URI of invalid NFT ID', async (ctx) => {
   const mToken = ctx.get('mToken');
-  const id99 = ctx.get('id99');
-  await ctx.reverts(() => mToken.instance.methods.tokenURI(id99).call());
+  const id1 = ctx.get('id1');
+
+  await ctx.reverts(() => mToken.instance.methods.tokenURI(id1).call());
 });
 
 spec.test('correctly mints a NFT', async (ctx) => {

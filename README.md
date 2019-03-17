@@ -139,6 +139,7 @@ SafeMath :  <<'library'>>
 * [utils/addressUtils.sol](src/contracts/utils/addressUtils.sol): Una librería con poco código (una sola función), para un control de las direcciones de los contratos.
 - [utils/erc165.sol](src/contracts/utils/erc165.sol): Ésta es una interfaz que provee al contrato de métodos estándares para determinar que otras interfaces implementa. 
 * [utils/supportsInterface.sol](src/contracts/utils/supportsInterface.sol): Este contrato es la implementación de la interfaz ERC165, que 0xCert toma la implementación de openZeppelin  y le hizo un cambio de nombre, eliminó el método _registerInterface y cambio de private a internal la variable _supportedInterfaces.
+* [proxy/proxy.sol](src/contracts/proxy/proxy.sol): Contrato utilizado para la actualización del contrato [sucToken.sol](src/contracts/principal/sucToken.sol). No se muestra en el diagrama, dado que su uso es a nivel de implementación y no tiene relación directa con el resto de contratos (quedaría como una "caja" suelta en el diagrama).
 
 ---
 
