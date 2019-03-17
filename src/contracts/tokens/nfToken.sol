@@ -123,7 +123,7 @@ contract NFToken is
     uint256 _tokenId
   )
   {
-    require(_tokenId != 0 || 
+    require(_tokenId != 0 &&
             idToOwner[_tokenId] != address(0));
     _;
   }

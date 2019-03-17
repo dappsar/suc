@@ -30,7 +30,7 @@ const NFT_ABI = [{
   },
   {
     "name": "_uri",
-    "type": "string"    
+    "type": "string"
   }]
 }]
 
@@ -43,7 +43,7 @@ async function main() {
 
   try {
     console.log("using contract (address): " + NFT_CONTRACT_ADDRESS)
-    
+
     const nftContract = new web3Instance.eth.Contract(NFT_ABI, NFT_CONTRACT_ADDRESS, {
       gasLimit: "1000000"
     })
@@ -54,7 +54,7 @@ async function main() {
     console.log("Minted solToken. Transaction: " + result.transactionHash)
     console.log("minting process End")
     return;
-      
+
   } catch (ex) {
     console.error(ex)
     return
