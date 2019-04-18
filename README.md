@@ -45,7 +45,7 @@ En éste documento se describe:
 
 ## Estructura del proyecto
 
-A continuación se describen las carpetas y archivos (del raíz) que forman parte del proyecto. Todos los archivos correspondientes a los contratos y sus tests, se encuentra en la carpeta [src](https://github.com/dappsar/suc/blob/master/src).
+A continuación se describen las carpetas y archivos (del raíz) que forman parte del proyecto. Todos los archivos correspondientes a los contratos y sus tests, se encuentran en la carpeta [src](https://github.com/dappsar/suc/blob/master/src).
 
 ### Carpetas y archivos
 
@@ -56,18 +56,18 @@ A continuación se describen las carpetas y archivos (del raíz) que forman part
 ├───images              --> Algunas imagenes del readme
 ├───scripts             --> Archivos para facilitar acciones (ejemplo: el proceso de minting)
 └───src
-    ├───contracts       
+    ├───contracts
     │   ├───math        --> Support Math Utils Library
     │   ├───ownership   --> Support Ownable Contract
     │   ├───principal   --> NFT Principal
     │   ├───proxy       --> Contrato para proxy
     │   ├───tokens      --> Support ERC721 Interfaces (enumerable, metadata, receiver)
     │   └───utils       --> Supports libraries (ERC165, AddressUtils and Supports Interface)
-    ├───migrations      --> Contratos de truffle para migración       
-    └───tests           
+    ├───migrations      --> Contratos de truffle para migración
+    └───tests
         ├───principal   --> Contract Tests
         └───tokens      --> Javascript Tests
-    ├───toRemix         --> Todos los contratos en un solo archivo para deploy en Remix       
+    ├───toRemix         --> Todos los contratos en un solo archivo para deploy en Remix
 ├───.babelrc            --> Configuración de [Babel](https://babeljs.io/docs/en/)
 ├───.coveralls.yml      --> Configuración de [Coveralls.io](https://coveralls.io/)
 ├───.editorconfig       --> Configuración para el editor
@@ -145,7 +145,7 @@ SafeMath :  <<'library'>>
 
 ## Preparación del ambiente
 
-Para la ejecución del proyecto, es necesario cumplir con algunos requisitos, que se describen a continuación. Luego, se detalla cómo relaizar el despliegue del proyecto en ambiente local. 
+Para la ejecución del proyecto, es necesario cumplir con algunos requisitos, que se describen a continuación. Luego, se detalla cómo realizar el despliegue del proyecto en ambiente local. 
 
 ### Requisitos
 
