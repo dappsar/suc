@@ -214,6 +214,18 @@ spec.test('throws when trying to get token of owner by non-existing index', asyn
   await ctx.reverts(() => mToken.instance.methods.tokenOfOwnerByIndex(bob, 1).call());
 });
 
+spec.test('throws when trying to mint with stopInEmergency modifier applied (Circuit Breaker)', async (ctx) => {
+  const mToken = ctx.get('mToken');
+  const owner = ctx.get('owner');
+  const bob = ctx.get('bob');
+  const id1 = ctx.get('id1');
+  const uri1 = ctx.get('uri1');
+
+  await mToken.instance.methods.toggleContractActive().call();
+  await mToken.instance.methods.mint(bob, id1, uri1).send({ from: owner });
+  await ctx.reverts(() => mToken.instance.methods.tokenOfOwnerByIndex(bob, 1).call());
+});
+
 spec.test('corectly burns a NFT', async (ctx) => {
   const mToken = ctx.get('mToken');
   const owner = ctx.get('owner');
